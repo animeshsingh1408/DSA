@@ -1,35 +1,25 @@
-class Solution {
+ class Solution {
     public boolean isIsomorphic(String s, String t) {
-        // HashSet<Character> set1= new HashSet();
-        // HashSet<Character> set2= new HashSet();
-        // for(int i=0;i<s.length();i++){
-        //     set1.add(s.charAt(i));
-        // }
-        //  for(int i=0;i<t.length();i++){
-        //     set2.add(t.charAt(i));
-        // }
-        // if(set1.size()==set2.size())
-        // return true;
-        // return false;
 
-       HashMap<Character, Character> map1 = new HashMap<>();
-HashMap<Character, Character> map2 = new HashMap<>();
 
-for (int i = 0; i < s.length(); i++) {
+    // Most Optimal Approach Using ASCII   value
+    
+        int[] map1 = new int[256];
+        int[] map2 = new int[256];
 
-    char a = s.charAt(i);
-    char b = t.charAt(i);
+        for (int i = 0; i < s.length(); i++) {
 
-    if (map1.containsKey(a) && map1.get(a) != b)
-        return false;
+            char c1 = s.charAt(i);
+            char c2 = t.charAt(i);
 
-    if (map2.containsKey(b) && map2.get(b) != a)
-        return false;
+            if (map1[c1] != map2[c2]) {
+                return false;
+            }
 
-    map1.put(a, b);
-    map2.put(b, a);
-}
+            map1[c1] = i + 1;
+            map2[c2] = i + 1;
+        }
 
-return true;
+        return true;
     }
 }
