@@ -10,22 +10,14 @@
  */
 class Solution {
     public ListNode middleNode(ListNode head) {
-        ListNode temp=head;
-        int c=0;
-        while(temp!=null){
-            temp=temp.next;
-            c++;
-        }
-        int p=(int)(c/2) +1;
-        temp=head;
-        c=0;
-        while(temp!=null){
-            c++;
-            if(c==p)
-            return temp;
-            temp=temp.next;
-            
+        // USING SLOW AND FAST POINTER
+        ListNode slow=head;
+        ListNode fast=head;
+
+    while(fast!=null && fast.next!=null){
+        slow=slow.next;
+        fast=fast.next.next;
     }
-    return temp;
+    return slow;
 }
 }
